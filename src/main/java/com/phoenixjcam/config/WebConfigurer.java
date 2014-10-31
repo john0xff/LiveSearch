@@ -39,7 +39,7 @@ public class WebConfigurer extends WebMvcConfigurerAdapter
 	public SessionFactory sessionFactory()
 	{
 		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());
-		//builder.scanPackages("com.phoenixjcam.login.users.model").addProperties(getHibernateProperties());
+		builder.scanPackages("com.phoenixjcam.links.model").addProperties(getHibernateProperties());
 		//builder.scanPackages("com.phoenixjcam.dashboard.humanResource.employee.model").addProperties(getHibernateProperties());
 		
 		return builder.buildSessionFactory();
