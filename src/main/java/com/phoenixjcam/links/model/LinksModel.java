@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "")
+@Table(name = "links", catalog = "live_search")
 public class LinksModel
 {
 	
