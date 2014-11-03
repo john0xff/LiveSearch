@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,36 +25,21 @@ public class DashboardController
 	@Autowired
 	private LinksService linksService;
 	
-	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public ModelAndView mainPage()
+	@RequestMapping(value = "/links", method = RequestMethod.GET)
+	public ModelAndView ajaxSearch()
 	{
 		ModelAndView modelAndView = new ModelAndView();
 
-		modelAndView.setViewName("template");
-		
-		List<LinksModel> linksList =  linksService.getLinks("", 10);
-		
-		modelAndView.addObject("linksList", linksList);
+		modelAndView.setViewName("links");
 
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/linksJson", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/search", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public List<LinksModel> getJsonLinks()
+	public List<LinksModel> ajaxSearch(@RequestParam String key)
 	{
-		List<LinksModel> linksList =  linksService.getLinks("", 10);
-		
-		
-		return linksList;
-	}
-	
-	@RequestMapping(value = "/linksXml", method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
-	@ResponseBody
-	public List<LinksModel> getXmlLinks()
-	{
-		List<LinksModel> linksList =  linksService.getLinks("", 10);
-		
+		List<LinksModel> linksList =  linksService.getLinks(key, 10);
 		
 		return linksList;
 	}
