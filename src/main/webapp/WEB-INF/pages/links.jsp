@@ -6,13 +6,39 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+
+<style type="text/css">
+table {
+	width: 100%;
+}
+
+td, th {
+	font-size: 1em;
+	border: 1px solid #98bf21;
+	padding: 3px 7px 2px 7px;
+}
+
+th {
+	font-size: 1.1em;
+	text-align: left;
+	padding-top: 5px;
+	padding-bottom: 4px;
+	background-color: #A7C942;
+	color: #ffffff;
+}
+
+tr.alt td {
+	color: #000000;
+	background-color: #EAF2D3;
+}
+</style>
+
 </head>
 <body>
-From search.jsp
 
-<h3>Start typing a name in the input field below:</h3>
+<h3>Live search for links</h3>
 	<form action="">
-		First name: <input type="text" id="txt1" onkeyup="showHint(this.value)" />
+		Type link: <input type="text" onkeyup="showHint(this.value)" />
 	</form>
 	<br>
 	
