@@ -14,7 +14,7 @@ table {
 
 td, th {
 	font-size: 1em;
-	border: 1px solid #98bf21;
+	border: 1px solid #4796e6;
 	padding: 3px 7px 2px 7px;
 }
 
@@ -23,7 +23,7 @@ th {
 	text-align: left;
 	padding-top: 5px;
 	padding-bottom: 4px;
-	background-color: #A7C942;
+	background-color: #4796e6;
 	color: #ffffff;
 }
 
@@ -38,7 +38,7 @@ tr.alt td {
 
 <h3>Live search for links</h3>
 	<form action="">
-		Type link: <input type="text" onkeyup="showHint(this.value)" />
+		Type link: <input type="text" onkeyup="search(this.value)" />
 	</form>
 	<br>
 	
@@ -59,7 +59,7 @@ tr.alt td {
 
 <script type="text/javascript">
 
-function showHint(str) 
+function search(str) 
 {
 	var xmlhttp;
 	var hLinks = document.getElementById("links");
@@ -112,7 +112,7 @@ function showHint(str)
 	};
 }
 
-showHint("");
+search("");
 
 </script>
 </body>
