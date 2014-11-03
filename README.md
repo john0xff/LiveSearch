@@ -9,4 +9,6 @@ update2 - git bash
 
 update3 - git eclipse integrated
 
+update4 - git bash
+
 
