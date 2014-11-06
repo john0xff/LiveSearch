@@ -18,9 +18,9 @@ public class LinksServiceImpl implements LinksService
 	private LinksDAO linksDAO;
 	
 	@Override
-	public List<LinksModel> getLinks(String searchKey, int limit)
+	public List<LinksModel> getLinksByInput(String searchKey, int limit)
 	{
-		return linksDAO.getLinks(searchKey, limit);
+		return linksDAO.getLinksByInput(searchKey, limit);
 	}
 
 }

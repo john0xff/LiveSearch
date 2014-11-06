@@ -31,39 +31,108 @@ tr.alt td {
 	color: #000000;
 	background-color: #EAF2D3;
 }
+
+.table-box {
+	border: solid 1px black;
+	width: 100%;
+}
+
+.list-box {
+	border: solid 1px black;
+} 
+
+.center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
 </style>
 
 </head>
 <body>
-
-<h3>Live search for links</h3>
-	<form action="">
-		Type link: <input type="text" onkeyup="search(this.value)" />
-	</form>
-	<br>
-	
-	<div>
-		<table>
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Link</th>
-					<th>Description</th>
-				</tr>
-			</thead>
-			<tbody id="links">
-				
-			</tbody>
-		</table>
-	</div>
-
+	<table class="center" style="width: 90%;" cellpadding="0" cellspacing="0">
+		<!-- header with search input -->
+		<tr>
+			<td colspan="2" style="background-color: #FFFFFF; margin: 20px;">
+				<h3 style=" margin: 20px;">Live search for links</h3>
+				<form action="" style=" margin: 20px;">
+					Type link: <input type="text" onkeyup="search(this.value)" />
+				</form>
+			</td>
+		</tr>
+		<!-- main content -->
+		<tr>
+			<!-- left list / category -->
+			<td style="background-color: #FFFFFF; width: 150px; vertical-align: top;">
+				<div class="list-box">
+					<ul>
+						<li onclick="category('engines')" value="engines">only search engines</li>
+						<li>b</li>
+						<li>c</li>
+					</ul>
+				</div>
+			</td>
+			<!-- content - search result -->
+			<td style="background-color: #FFFFFF; height: 200px; width: 400px; vertical-align: top;">	
+				<div class="table-box">
+					<table>
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Link</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody id="links">
+							
+						</tbody>
+					</table>
+				</div>
+			</td>
+		</tr>
+		<!-- footer -->
+		<tr>
+			<td colspan="2" style="background-color: #FFFFFF; text-align: center;">
+				<a href="http://www.phoenixjcam.com" target="_blank">phoenixjcam.com</a>
+			</td>
+		</tr>
+	</table>
 <script type="text/javascript">
 
+var hLinks = document.getElementById("links");
+
+function createLinksTable(arr)
+{
+	var tableRow = "";
+	var i;
+	
+	for (i = 0; i < arr.length; i++) 
+	{
+		tableRow += "<tr>";
+		
+		tableRow += "<td>";
+		tableRow += arr[i].linkId;
+		tableRow += "</td>";
+		
+		tableRow += "<td>";
+		tableRow += '<a href=\'' + arr[i].linkAddress + '\' target="_blank">\'' + arr[i].linkAddress + '\'</a>';
+		tableRow += "</td>";
+		
+		tableRow += "<td>";
+		tableRow += arr[i].linkDescription;
+		tableRow += "</td>";
+		
+		tableRow += "</tr>";
+	}
+	
+	hLinks.innerHTML = tableRow;
+};
+
+// ajax for input
 function search(str) 
 {
 	var xmlhttp;
-	var hLinks = document.getElementById("links");
-	
+
 	if (str.length == 0) 
 	{
 		str = "";
@@ -78,41 +147,42 @@ function search(str)
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
 		{
 			var jsonObj = JSON.parse(xmlhttp.responseText);
-	        createLinksTable(jsonObj); 
+	        createLinksTable(jsonObj); // call global function
 		}
 	};
 	xmlhttp.open("GET", "search?key=" + str, true);
 	xmlhttp.send();
-	
-	function createLinksTable(arr)
-	{
-		var tableRow = "";
-		var i;
-		
-		for (i = 0; i < arr.length; i++) 
-		{
-			tableRow += "<tr>";
-			
-			tableRow += "<td>";
-			tableRow += arr[i].linkId;
-			tableRow += "</td>";
-			
-			tableRow += "<td>";
-			tableRow += '<a href=\'' + arr[i].linkAddress + '\' target="_blank">\'' + arr[i].linkAddress + '\'</a>';
-			tableRow += "</td>";
-			
-			tableRow += "<td>";
-			tableRow += arr[i].linkDescription;
-			tableRow += "</td>";
-			
-			tableRow += "</tr>";
-		}
-		
-		hLinks.innerHTML = tableRow;
-	};
-}
+};
 
-search("");
+search("h"); // call it once on start
+
+//ajax for category
+function category(str) 
+{
+	var xmlhttp;
+
+	if (str.length == 0) 
+	{
+		str = "";
+		hLinks.innerHTML = "";
+		return;
+	}
+	
+	xmlhttp = new XMLHttpRequest();
+	
+	xmlhttp.onreadystatechange = function () 
+	{
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+		{
+			var jsonObj = JSON.parse(xmlhttp.responseText);
+	        createLinksTable(jsonObj); // call global function
+		}
+	};
+	xmlhttp.open("GET", "category?key=" + str, true);
+	xmlhttp.send();
+};
+
+
 
 </script>
 </body>

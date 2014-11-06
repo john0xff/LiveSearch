@@ -39,7 +39,7 @@ public class DashboardController
 	@ResponseBody
 	public List<LinksModel> ajaxSearch(@RequestParam String key)
 	{
-		List<LinksModel> linksList =  linksService.getLinks(key, 10);
+		List<LinksModel> linksList =  linksService.getLinksByInput(key, 10);
 		
 		return linksList;
 	}

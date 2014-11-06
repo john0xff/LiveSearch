@@ -24,7 +24,7 @@ public class LinksDAOImpl implements LinksDAO
 
 	// search for links + 2 additional criteria http:// and www
 	@Override
-	public List<LinksModel> getLinks(String searchKey, int limit)
+	public List<LinksModel> getLinksByInput(String searchKey, int limit)
 	{
 		// List<LinksModel> list = getCurrentSession().createQuery("FROM LinksModel").list();
 		// List<LinksModel> list = DataUtilities.castList(LinksModel.class,
@@ -50,6 +50,14 @@ public class LinksDAOImpl implements LinksDAO
 		// .addOrder( Order.asc("age") )
 
 		return list;
+	}
+
+	@Override
+	public List<LinksModel> getLinksByCategory(String searchKey, int limit)
+	{
+		
+		
+		return null;
 	}
 
 }

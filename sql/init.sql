@@ -56,4 +56,14 @@ INSERT INTO `links` (`linkId`, `linkAddress`, `linkDescription`) VALUES
 
 /* change column name :) */
 alter table links change `linkName` `linkAddress` varchar(100)
+ALTER TABLE `links` ADD `linkCategory` VARCHAR(100) NOT NULL ;
+
+UPDATE `links` SET `links`.`linkCategory`='search_engines' WHERE `links`.`linkAddress`='http://www.google.com'
+
+
+
+
+
+
+
 
