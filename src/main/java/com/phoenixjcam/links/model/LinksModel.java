@@ -15,6 +15,7 @@ public class LinksModel
 	private int linkId;
 	private String linkAddress;
 	private String linkDescription;
+	private String linkCategory;
 
 	@Id
 	@GeneratedValue
@@ -49,6 +50,17 @@ public class LinksModel
 	public void setLinkDescription(String linkDescription)
 	{
 		this.linkDescription = linkDescription;
+	}
+
+	@Column(name = "linkCategory")
+	public String getLinkCategory()
+	{
+		return linkCategory;
+	}
+
+	public void setLinkCategory(String linkCategory)
+	{
+		this.linkCategory = linkCategory;
 	}
 
 }

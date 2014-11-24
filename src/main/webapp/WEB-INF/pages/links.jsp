@@ -65,10 +65,12 @@ tr.alt td {
 			<!-- left list / category -->
 			<td style="background-color: #FFFFFF; width: 150px; vertical-align: top;">
 				<div class="list-box">
+					<button onclick="category('search_engines')">search_engines</button>
 					<ul>
-						<li onclick="category('engines')" value="engines">only search engines</li>
-						<li>b</li>
-						<li>c</li>
+						
+						<li onclick="category('search_engines')">search_engines</li>
+						<li onclick="category('personal')">personal</li>
+						<li onclick="category('tutorials')">tutorials</li>
 					</ul>
 				</div>
 			</td>
@@ -101,6 +103,7 @@ tr.alt td {
 
 var hLinks = document.getElementById("links");
 
+// print data in main table from given JSON
 function createLinksTable(arr)
 {
 	var tableRow = "";

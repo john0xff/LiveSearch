@@ -26,7 +26,7 @@ public class DashboardController
 	private LinksService linksService;
 	
 	@RequestMapping(value = "/links", method = RequestMethod.GET)
-	public ModelAndView ajaxSearch()
+	public ModelAndView responseLinkPage()
 	{
 		ModelAndView modelAndView = new ModelAndView();
 
@@ -37,9 +37,18 @@ public class DashboardController
 	
 	@RequestMapping(value = "/search", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public List<LinksModel> ajaxSearch(@RequestParam String key)
+	public List<LinksModel> linksByKeyXhr(@RequestParam String key)
 	{
 		List<LinksModel> linksList =  linksService.getLinksByInput(key, 10);
+		
+		return linksList;
+	}
+	
+	@RequestMapping(value = "/category", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public List<LinksModel> linksByCategoryXhr(@RequestParam String key)
+	{
+		List<LinksModel> linksList =  linksService.getLinksByCategory(key, 10);
 		
 		return linksList;
 	}

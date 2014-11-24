@@ -23,4 +23,10 @@ public class LinksServiceImpl implements LinksService
 		return linksDAO.getLinksByInput(searchKey, limit);
 	}
 
+	@Override
+	public List<LinksModel> getLinksByCategory(String categoryKey, int limit)
+	{
+		return linksDAO.getLinksByCategory(categoryKey, limit);
+	}
+
 }

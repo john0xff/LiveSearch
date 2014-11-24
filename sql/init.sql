@@ -59,11 +59,11 @@ alter table links change `linkName` `linkAddress` varchar(100)
 ALTER TABLE `links` ADD `linkCategory` VARCHAR(100) NOT NULL ;
 
 UPDATE `links` SET `links`.`linkCategory`='search_engines' WHERE `links`.`linkAddress`='http://www.google.com'
+update `links` set `linkCategory`='search_engines' where `linkAddress` = 'http://www.yahoo.com'
 
-
-
-
-
+update `links` set `linkCategory`='personal' where `linkAddress` = 'http://www.phoenixjcam.com';
+update `links` set `linkCategory`='tutorials' where `linkAddress` = 'http://www.w3schools.com/';
+update `links` set `linkCategory`='tutorials' where `linkAddress` = 'http://www.tutorialspoint.com/' OR `linkAddress` = 'http://www.w3schools.com/';
 
 
 

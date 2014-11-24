@@ -14,5 +14,5 @@ public interface LinksDAO
 	
 	public List<LinksModel> getLinksByInput(String searchKey, int limit);
 	
-	public List<LinksModel> getLinksByCategory(String searchKey, int limit);
+	public List<LinksModel> getLinksByCategory(String categoryKey, int limit);
 }

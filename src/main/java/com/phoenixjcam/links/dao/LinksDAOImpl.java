@@ -53,11 +53,23 @@ public class LinksDAOImpl implements LinksDAO
 	}
 
 	@Override
-	public List<LinksModel> getLinksByCategory(String searchKey, int limit)
+	public List<LinksModel> getLinksByCategory(String categoryKey, int limit)
 	{
+		@SuppressWarnings("unchecked")
+		List<LinksModel> list = this
+				.getCurrentSession()
+				.createCriteria(LinksModel.class)
+				.add(Restrictions.like("linkCategory", categoryKey))
+				.list();
 		
-		
-		return null;
+		return list;
 	}
 
 }
+
+
+
+
+
+
+
